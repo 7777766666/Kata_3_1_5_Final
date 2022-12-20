@@ -16,11 +16,10 @@ import ru.kata.spring.boot_security.demo.model.User;
 import java.security.Principal;
 
 @Controller
-//@RequestMapping("/user")
 public class UserController {
 
     @GetMapping("/user")
-    public String userPage(){
+    public String returnUserPage(){
         return "user/user";
     }
 

@@ -13,44 +13,54 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping
 public class AdminController {
 
-    private final UserService userService;
-
-    @Autowired
-    public AdminController(UserService userService) {
-        this.userService = userService;
+    @GetMapping("/admin")
+    public String returnAdminPage(){
+        return "admin/admin";
     }
 
-    @GetMapping("")
-    public ModelAndView admin(Principal user) {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("admin/admin");
-        List<User> users = userService.listUsers();
-        modelAndView.addObject("users", users);
-        modelAndView.addObject("admin", userService.findByEmail(user.getName()));
-        return modelAndView;
-    }
 
-    @PostMapping("/add")
-    public String addUser(User user) {
-        userService.add(user);
-        return "redirect:/admin";
-    }
 
-    @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Model model) {
-        userService.removeUser(id);
-        return "redirect:/admin";
-    }
 
-    @PatchMapping("/user-update/{id}")
-    public String editUser(@PathVariable("id") Integer id, User user) {
-        user.setId(id);
-        userService.updateUser(user);
-        return "redirect:/admin";
-    }
+
+
+//    private final UserService userService;
+//
+//    @Autowired
+//    public AdminController(UserService userService) {
+//        this.userService = userService;
+//    }
+//
+//    @GetMapping("")
+//    public ModelAndView admin(Principal user) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("admin/admin");
+//        List<User> users = userService.listUsers();
+//        modelAndView.addObject("users", users);
+//        modelAndView.addObject("admin", userService.findByEmail(user.getName()));
+//        return modelAndView;
+//    }
+//
+//    @PostMapping("/add")
+//    public String addUser(User user) {
+//        userService.add(user);
+//        return "redirect:/admin";
+//    }
+//
+//    @DeleteMapping("/delete/{id}")
+//    public String delete(@PathVariable("id") Integer id, Model model) {
+//        userService.removeUser(id);
+//        return "redirect:/admin";
+//    }
+//
+//    @PatchMapping("/user-update/{id}")
+//    public String editUser(@PathVariable("id") Integer id, User user) {
+//        user.setId(id);
+//        userService.updateUser(user);
+//        return "redirect:/admin";
+//    }
 }
 
 

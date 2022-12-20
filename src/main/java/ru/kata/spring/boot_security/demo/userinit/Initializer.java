@@ -35,7 +35,7 @@ public class Initializer {
 
         User adminUser1 = new User("AdminUser", "SuperAdminUser", 111, "adminUser@adminUser","adminUser" , roleAdmin);
         User user1 = new User("User", "MainUser", 55, "u@u","u", roleUser);
-        User admin1 = new User("admin", "MainAdmin", 99, "admin@admin.ru","a", roleAdmin);
+        User admin1 = new User("admin", "MainAdmin", 99, "a@a","a", roleAdmin);
 
         userService.add(admin1);
         userService.add(user1);
