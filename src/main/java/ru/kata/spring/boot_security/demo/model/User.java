@@ -38,7 +38,7 @@ public class User implements UserDetails {
 
     @NotNull
     @Column(name = "age")
-    Integer age;
+    private Integer age;
 
     @NotNull
     @Column(name = "email", unique = true)
