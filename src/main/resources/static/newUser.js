@@ -1,49 +1,42 @@
-$(async function() {
+$(async function () {
     await newUser();
-
 });
 
+async function newUser() {
 
-async function newUser(){
+    const form = document.forms["formNewUser"];
 
-    const userNew = document.forms[`newUser`];
-    userNew.addEventListener(`submit`, createNewUser)
+    form.addEventListener('submit', addNewUser)
 
-    function createNewUser(e){
+    function addNewUser(e) {
         e.preventDefault();
 
-        const select_options = document.querySelector(`#newUserRoles`).selectedOptions;
+        const selected_options = document.querySelector('#AddNewUserRoles').selectedOptions;
 
-        let rolesNamesArray = new Array(select_options.length);
-        for (let i = 0; i < select_options; i++) {
-            rolesNamesArray[i] = select_options[i].value;
+        const rolesNamesArray = new Array(selected_options.length);
+        for (let i = 0; i < selected_options.length; i++) {
+            rolesNamesArray[i] = selected_options[i].value;
         }
 
         fetch(`http://localhost:8080/api/new`, {
-            method: "POST",
-            headers:{
-                "Content-Type": `application/json`
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: userNew.name.valueOf(),
-                secondName: userNew.secondName.valueOf(),
-                age: userNew.age.valueOf(),
-                email: userNew.email.valueOf(),
-                password: userNew.password.valueOf(),
+                name: form.name.value,
+                secondName: form.secondName.value,
+                age: form.age.value,
+                email: form.email.value,
+                password: form.password.value,
                 roles: rolesNamesArray
             })
-        }).then(() =>{
-            userNew.reset();
-            getAllUsers();
-            $("#")
+        }).then(() => {
+            form.reset();
+            allUsers();
+            $('#usersTableTab').click();
 
         })
-
     }
-
-
-    )
-
-
-
 }
+

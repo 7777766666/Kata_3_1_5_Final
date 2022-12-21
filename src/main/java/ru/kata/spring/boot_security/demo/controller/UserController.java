@@ -24,35 +24,14 @@ public class UserController {
     }
 
 
-    @GetMapping("/api/user")
     @ResponseBody
+    @GetMapping("/api/user")
     @PreAuthorize("isAuthenticated()")
     public ResponseEntity<User> getUser(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) authentication.getPrincipal();
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
-
-
-
-
-
-    //  private final UserDao userDao;
-
-   // public UserController(UserDao userDao) {
-//        this.userDao = userDao;
-//    }
-
-//    @GetMapping(value = "")
-//    public String printWelcome(ModelMap model, Principal principal) {
-//        User user = userDao.findByEmail(principal.getName());
-//        model.addAttribute("roles", user.getRoles());
-//        model.addAttribute("user", user);
-//        return "user/user";
-//    }
-
-
-
 }
 
 
